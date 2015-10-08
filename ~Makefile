@@ -1,0 +1,21 @@
+CC = g++-4.9
+CFLAGS=-std=c++11 -g -O2
+LDFLAGS=
+BINPATH=bin
+OBJPATH=build
+SRCDIR=src
+SOURCES=$(wildcard src/*.cpp)
+OBJECTS=$(patsubst $(SRCDIR)/%.cpp, $(OBJPATH)/%.o, $(SOURCES))
+EXECUTABLE=$(BINPATH)/run
+
+
+all: clean $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+$(OBJPATH)/%.o: $(SRCDIR)/%.cpp 
+	$(CC) $(CFLAGS) $< -c $@ 
+
+clean:
+	rm -f $(OBJPATH)/*.o $(EXECUTABLE) 

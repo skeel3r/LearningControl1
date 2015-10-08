@@ -1,10 +1,9 @@
 CC = g++-4.9
 CFLAGS=-std=c++11 -g -O2
 LDFLAGS=
-SOURCES=*.cpp
+SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=run
-
 all: clean $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
